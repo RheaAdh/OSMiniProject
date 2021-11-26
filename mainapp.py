@@ -16,6 +16,9 @@ class appwindow(QMainWindow, app.Ui_MainWindow):
 
         self.calculatebutton.clicked.connect(self.calculate)
 
+        self.numfield.setTextMargins(5, 0, 0, 0)
+        self.burstfield.setTextMargins(5, 0, 0, 0)
+
     def calculate(self):
         bursttimetext = self.burstfield.text()
         bursttime = [int(burst.strip()) for burst in bursttimetext.split(',')]
