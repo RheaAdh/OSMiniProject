@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,6,1">
+    <item>
+     <widget class="QWidget" name="widget" native="true"/>
+    </item>
+    <item>
+     <widget class="QWidget" name="widget_2" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="FCFS">
+          <attribute name="title">
+           <string>FCFS</string>
+          </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QTableWidget" name="fcfstable">
+             <column>
+              <property name="text">
+               <string>Processes</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Burst Time</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Waiting Time</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Turn-around Time</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="SJF">
+          <attribute name="title">
+           <string>SJF</string>
+          </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QTableWidget" name="sjftable">
+             <column>
+              <property name="text">
+               <string>Processes</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Burst Time</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Waiting Time</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Turn-around Time</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="RR">
+          <attribute name="title">
+           <string>RR</string>
+          </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QTableWidget" name="rrtable">
+             <column>
+              <property name="text">
+               <string>Processes</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Burst Time</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Waiting Time</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Turn-around Time</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="widget_3" native="true"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
