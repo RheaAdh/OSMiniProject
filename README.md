@@ -1,6 +1,14 @@
 # OSMiniProject
 
-Run the following to install the GUI library:
+Run the following to install the requirements:
 ```
-pip install PyQt5
+pip install virtualenv
+virtualenv venv
+.\venv\Scripts\activate.ps1 
+pip install -r requirements.txt
+```
+
+Run the following to build the app:
+```
+pyinstaller mainapp.spec
 ```
