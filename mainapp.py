@@ -6,7 +6,7 @@ from PyQt5.QtCore import Qt
 # IMPORTING THE PROCESS SCHEDULING ALGORITHMS
 import fcfs
 import roundrobin
-# import sjf
+import sjf
 
 
 class appwindow(QMainWindow, app.Ui_MainWindow):
@@ -31,12 +31,15 @@ class appwindow(QMainWindow, app.Ui_MainWindow):
         fcfsOutput = fcfs.findAverageTime(processes, numprocess, bursttime)
         print("!!!!!!!!!!!!FCSFS OUTPUT!!!!!!!!!!!!")
         print(fcfsOutput)
-        # Quantum=2
-        roundrobinOutput = roundrobin.findavgTime(
+
+        roundrobinOutput = roundrobin.findAverageTime(
             processes, numprocess, bursttime, 2)
         print("!!!!!!!!!!!!RR OUTPUT!!!!!!!!!!!!")
         print(roundrobinOutput)
 
+        sjfOutput = sjf.findAverageTime(sorted(bursttime), bursttime)
+        print("!!!!!!!!!!!!SJF OUTPUT!!!!!!!!!!!!")
+        print(sjfOutput)
 
 QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
 QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
