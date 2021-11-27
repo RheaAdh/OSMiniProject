@@ -28,21 +28,23 @@ class appwindow(QMainWindow, app.Ui_MainWindow):
         numprocess = len(bursttime)
         processes = [num for num in range(1, numprocess + 1)]
 
-        self.fcfsOutput = fcfs.findAverageTime(
+        self.fcfsOutput, self.fcfswaitval, self.fcfsturnval = fcfs.findAverageTime(
             processes, numprocess, bursttime)
         # print("!!!!!!!!!!!!FCSFS OUTPUT!!!!!!!!!!!!")
         # print(self.fcfsOutput)
 
-        self.roundrobinOutput = roundrobin.findAverageTime(
+        self.roundrobinOutput, self.rrwaitval, self.rrturnval = roundrobin.findAverageTime(
             processes, numprocess, bursttime, 2)
         # print("!!!!!!!!!!!!RR OUTPUT!!!!!!!!!!!!")
         # print(self.roundrobinOutput)
 
-        self.sjfOutput = sjf.findAverageTime(sorted(bursttime), bursttime)
+        self.sjfOutput, self.sjfwaitval, self.sjfturnval = sjf.findAverageTime(
+            sorted(bursttime), bursttime)
         # print("!!!!!!!!!!!!SJF OUTPUT!!!!!!!!!!!!")
         # print(self.sjfOutput)
 
         self.createtable()
+        self.createlabels()
 
     def createtable(self):
         count = 0
@@ -72,12 +74,21 @@ class appwindow(QMainWindow, app.Ui_MainWindow):
         self.sjftable.setRowCount(len(self.sjfOutput))
         for item in self.sjfOutput:
             self.sjftable.setItem(count, 0, QTableWidgetItem(item['process']))
-            self.sjftable.setItem(count, 1, QTableWidgetItem(item['burstTime']))
+            self.sjftable.setItem(
+                count, 1, QTableWidgetItem(item['burstTime']))
             self.sjftable.setItem(
                 count, 2, QTableWidgetItem(item['waitingTime']))
             self.sjftable.setItem(
                 count, 3, QTableWidgetItem(item['turnAroundTime']))
             count = count + 1
+
+    def createlabels(self):
+        self.fcfswait.setText(self.fcfswaitval + 's')
+        self.fcfsturn.setText(self.fcfsturnval + 's')
+        self.rrwait.setText(self.rrwaitval + 's')
+        self.rrturn.setText(self.rrturnval + 's')
+        self.sjfwait.setText(self.sjfwaitval + 's')
+        self.sjfturn.setText(self.sjfturnval + 's')
 
 QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
 QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
