@@ -1,6 +1,6 @@
 def findAverageTime(bursttime, x):  # x is unsorted list
-    print("--------------------SJF-------------------")
-    print("Process    BurstTime    WaitingTime    TurnaroundTime")
+    # print("--------------------SJF-------------------")
+    # print("Process    BurstTime    WaitingTime    TurnaroundTime")
     i = 0
     waiting_time = 0
     turnaround_time = 0
@@ -11,18 +11,19 @@ def findAverageTime(bursttime, x):  # x is unsorted list
     while(i < len(bursttime)):
         turnaround_time += bursttime[i]
 
-        sjfOutput.append({"process": x.index(bursttime[i])+1, "burstTime": bursttime[i], "waitingTime": waiting_time, "turnAroundTime": turnaround_time})
+        sjfOutput.append({"process": x.index(
+            bursttime[i])+1, "burstTime": bursttime[i], "waitingTime": waiting_time, "turnAroundTime": turnaround_time})
 
-        print("P" + str(x.index(bursttime[i])+1), str(bursttime[i]),
-              str(waiting_time), str(turnaround_time), sep='\t\t')
+        # print("P" + str(x.index(bursttime[i])+1), str(bursttime[i]),
+        #       str(waiting_time), str(turnaround_time), sep='\t\t')
         x[x.index(bursttime[i])] = -1
         empty1.append(waiting_time)
         empty2.append(turnaround_time)
         waiting_time += bursttime[i]
         i += 1
 
-    print("Average waiting time: "+str(sum(empty1)/len(empty1)))
-    print("Average turn around time: "+str(sum(empty2)/len(empty2)))
+    # print("Average waiting time: "+str(sum(empty1)/len(empty1)))
+    # print("Average turn around time: "+str(sum(empty2)/len(empty2)))
     return sjfOutput
 
 
