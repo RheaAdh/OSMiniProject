@@ -3,8 +3,11 @@ import GUI.app as app
 from PyQt5.QtWidgets import QMainWindow, QApplication, QHeaderView
 from PyQt5.QtCore import Qt
 
+# IMPORTING THE PROCESS SCHEDULING ALGORITHMS
 import fcfs
 import roundrobin
+# import sjf
+
 
 class appwindow(QMainWindow, app.Ui_MainWindow):
     def __init__(self):
@@ -24,14 +27,21 @@ class appwindow(QMainWindow, app.Ui_MainWindow):
         bursttime = [int(burst.strip()) for burst in bursttimetext.split(',')]
         numprocess = len(bursttime)
         processes = [num for num in range(1, numprocess + 1)]
-        
-        fcfs.findAverageTime(processes, numprocess, bursttime)
-        roundrobin.findavgTime(processes, numprocess, bursttime, 2)
+
+        fcfsOutput = fcfs.findAverageTime(processes, numprocess, bursttime)
+        print("!!!!!!!!!!!!FCSFS OUTPUT!!!!!!!!!!!!")
+        print(fcfsOutput)
+        # Quantum=2
+        roundrobinOutput = roundrobin.findavgTime(
+            processes, numprocess, bursttime, 2)
+        print("!!!!!!!!!!!!RR OUTPUT!!!!!!!!!!!!")
+        print(roundrobinOutput)
 
 
 QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
 QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
-QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
+QApplication.setHighDpiScaleFactorRoundingPolicy(
+    Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
 
 app = QApplication([])
 

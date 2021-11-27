@@ -28,13 +28,14 @@ def findTurnAroundTime(processes, n, bt, wt, tat):
 
 
 def findavgTime(processes, n, bt, quantum):
+    roundrobinOutput = []
     wt = [0] * n
     tat = [0] * n
 
     findWaitingTime(processes, n, bt, wt, quantum)
 
     findTurnAroundTime(processes, n, bt, wt, tat)
-
+    print("-----------------RR----------------")
     print("Processes Burst Time	 Waiting", "Time Turn-Around Time")
     total_wt = 0
     total_tat = 0
@@ -42,10 +43,16 @@ def findavgTime(processes, n, bt, quantum):
 
         total_wt = total_wt + wt[i]
         total_tat = total_tat + tat[i]
+        burstData = bt[i]
+        waitData = wt[i]
+        tatData = tat[i]
         print(" ", i + 1, "\t\t", bt[i], "\t\t", wt[i], "\t\t", tat[i])
+        roundrobinOutput.append(
+            {"burstTime": burstData, "waitingTime": waitData, "turnAroundTime": tatData})
 
     print("\nAverage waiting time = %.5f " % (total_wt / n))
     print("Average turn around time = %.5f " % (total_tat / n))
+    return roundrobinOutput
 
 
 if __name__ == "__main__":
