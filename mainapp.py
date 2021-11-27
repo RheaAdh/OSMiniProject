@@ -23,28 +23,31 @@ class appwindow(QMainWindow, app.Ui_MainWindow):
         self.burstfield.setTextMargins(5, 0, 0, 0)
 
     def calculate(self):
-        bursttimetext = self.burstfield.text()
-        bursttime = [int(burst.strip()) for burst in bursttimetext.split(',')]
-        numprocess = len(bursttime)
-        processes = [num for num in range(1, numprocess + 1)]
+        try:
+            bursttimetext = self.burstfield.text()
+            bursttime = [int(burst.strip()) for burst in bursttimetext.split(',')]
+            numprocess = len(bursttime)
+            processes = [num for num in range(1, numprocess + 1)]
 
-        self.fcfsOutput, self.fcfswaitval, self.fcfsturnval = fcfs.findAverageTime(
-            processes, numprocess, bursttime)
-        # print("!!!!!!!!!!!!FCSFS OUTPUT!!!!!!!!!!!!")
-        # print(self.fcfsOutput)
+            self.fcfsOutput, self.fcfswaitval, self.fcfsturnval = fcfs.findAverageTime(
+                processes, numprocess, bursttime)
+            # print("!!!!!!!!!!!!FCSFS OUTPUT!!!!!!!!!!!!")
+            # print(self.fcfsOutput)
 
-        self.roundrobinOutput, self.rrwaitval, self.rrturnval = roundrobin.findAverageTime(
-            processes, numprocess, bursttime, 2)
-        # print("!!!!!!!!!!!!RR OUTPUT!!!!!!!!!!!!")
-        # print(self.roundrobinOutput)
+            self.roundrobinOutput, self.rrwaitval, self.rrturnval = roundrobin.findAverageTime(
+                processes, numprocess, bursttime, 2)
+            # print("!!!!!!!!!!!!RR OUTPUT!!!!!!!!!!!!")
+            # print(self.roundrobinOutput)
 
-        self.sjfOutput, self.sjfwaitval, self.sjfturnval = sjf.findAverageTime(
-            sorted(bursttime), bursttime)
-        # print("!!!!!!!!!!!!SJF OUTPUT!!!!!!!!!!!!")
-        # print(self.sjfOutput)
+            self.sjfOutput, self.sjfwaitval, self.sjfturnval = sjf.findAverageTime(
+                sorted(bursttime), bursttime)
+            # print("!!!!!!!!!!!!SJF OUTPUT!!!!!!!!!!!!")
+            # print(self.sjfOutput)
 
-        self.createtable()
-        self.createlabels()
+            self.createtable()
+            self.createlabels()
+        except Exception as err:
+            print(err)
 
     def createtable(self):
         count = 0
