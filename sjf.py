@@ -11,8 +11,8 @@ def findAverageTime(bursttime, x):  # x is unsorted list
     while(i < len(bursttime)):
         turnaround_time += bursttime[i]
 
-        sjfOutput.append({"process": x.index(
-            bursttime[i])+1, "burstTime": bursttime[i], "waitingTime": waiting_time, "turnAroundTime": turnaround_time})
+        sjfOutput.append({"process": str(x.index(
+            bursttime[i])+1), "burstTime": str(bursttime[i]), "waitingTime": str(waiting_time), "turnAroundTime": str(turnaround_time)})
 
         # print("P" + str(x.index(bursttime[i])+1), str(bursttime[i]),
         #       str(waiting_time), str(turnaround_time), sep='\t\t')

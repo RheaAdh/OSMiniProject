@@ -1,6 +1,6 @@
 import GUI.app as app
 
-from PyQt5.QtWidgets import QMainWindow, QApplication, QHeaderView
+from PyQt5.QtWidgets import QMainWindow, QApplication, QHeaderView, QTableWidgetItem
 from PyQt5.QtCore import Qt
 
 # IMPORTING THE PROCESS SCHEDULING ALGORITHMS
@@ -28,18 +28,56 @@ class appwindow(QMainWindow, app.Ui_MainWindow):
         numprocess = len(bursttime)
         processes = [num for num in range(1, numprocess + 1)]
 
-        fcfsOutput = fcfs.findAverageTime(processes, numprocess, bursttime)
-        print("!!!!!!!!!!!!FCSFS OUTPUT!!!!!!!!!!!!")
-        print(fcfsOutput)
+        self.fcfsOutput = fcfs.findAverageTime(
+            processes, numprocess, bursttime)
+        # print("!!!!!!!!!!!!FCSFS OUTPUT!!!!!!!!!!!!")
+        # print(self.fcfsOutput)
 
-        roundrobinOutput = roundrobin.findAverageTime(
+        self.roundrobinOutput = roundrobin.findAverageTime(
             processes, numprocess, bursttime, 2)
-        print("!!!!!!!!!!!!RR OUTPUT!!!!!!!!!!!!")
-        print(roundrobinOutput)
+        # print("!!!!!!!!!!!!RR OUTPUT!!!!!!!!!!!!")
+        # print(self.roundrobinOutput)
 
-        sjfOutput = sjf.findAverageTime(sorted(bursttime), bursttime)
-        print("!!!!!!!!!!!!SJF OUTPUT!!!!!!!!!!!!")
-        print(sjfOutput)
+        self.sjfOutput = sjf.findAverageTime(sorted(bursttime), bursttime)
+        # print("!!!!!!!!!!!!SJF OUTPUT!!!!!!!!!!!!")
+        # print(self.sjfOutput)
+
+        self.createtable()
+
+    def createtable(self):
+        count = 0
+        self.fcfstable.setRowCount(len(self.fcfsOutput))
+        for item in self.fcfsOutput:
+            self.fcfstable.setItem(count, 0, QTableWidgetItem(item['process']))
+            self.fcfstable.setItem(
+                count, 1, QTableWidgetItem(item['burstTime']))
+            self.fcfstable.setItem(
+                count, 2, QTableWidgetItem(item['waitingTime']))
+            self.fcfstable.setItem(
+                count, 3, QTableWidgetItem(item['turnAroundTime']))
+            count = count + 1
+
+        count = 0
+        self.rrtable.setRowCount(len(self.roundrobinOutput))
+        for item in self.roundrobinOutput:
+            self.rrtable.setItem(count, 0, QTableWidgetItem(item['process']))
+            self.rrtable.setItem(count, 1, QTableWidgetItem(item['burstTime']))
+            self.rrtable.setItem(
+                count, 2, QTableWidgetItem(item['waitingTime']))
+            self.rrtable.setItem(
+                count, 3, QTableWidgetItem(item['turnAroundTime']))
+            count = count + 1
+
+        count = 0
+        self.sjftable.setRowCount(len(self.sjfOutput))
+        for item in self.sjfOutput:
+            self.sjftable.setItem(count, 0, QTableWidgetItem(item['process']))
+            self.sjftable.setItem(count, 1, QTableWidgetItem(item['burstTime']))
+            self.sjftable.setItem(
+                count, 2, QTableWidgetItem(item['waitingTime']))
+            self.sjftable.setItem(
+                count, 3, QTableWidgetItem(item['turnAroundTime']))
+            count = count + 1
 
 QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
 QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)

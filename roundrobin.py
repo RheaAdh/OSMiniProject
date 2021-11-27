@@ -43,12 +43,12 @@ def findAverageTime(processes, n, bt, quantum):
 
         total_wt = total_wt + wt[i]
         total_tat = total_tat + tat[i]
-        burstData = bt[i]
-        waitData = wt[i]
-        tatData = tat[i]
+        burstData = str(bt[i])
+        waitData = str(wt[i])
+        tatData = str(tat[i])
         # print(" ", i + 1, "\t\t", bt[i], "\t\t", wt[i], "\t\t", tat[i])
         roundrobinOutput.append(
-            {"process": i+1, "burstTime": burstData, "waitingTime": waitData, "turnAroundTime": tatData})
+            {"process": str(i+1), "burstTime": burstData, "waitingTime": waitData, "turnAroundTime": tatData})
 
     # print("\nAverage waiting time = %.5f " % (total_wt / n))
     # print("Average turn around time = %.5f " % (total_tat / n))
