@@ -24,7 +24,9 @@ def findAverageTime(bursttime, x):  # x is unsorted list
 
     # print("Average waiting time: "+str(sum(empty1)/len(empty1)))
     # print("Average turn around time: "+str(sum(empty2)/len(empty2)))
-    return sjfOutput
+    avgwait = round(sum(empty1)/len(empty1), 5)
+    avgturn = round(sum(empty2)/len(empty2), 5)
+    return sjfOutput, str(avgwait), str(avgturn)
 
 
 if __name__ == '__main__':

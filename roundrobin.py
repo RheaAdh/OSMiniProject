@@ -52,7 +52,9 @@ def findAverageTime(processes, n, bt, quantum):
 
     # print("\nAverage waiting time = %.5f " % (total_wt / n))
     # print("Average turn around time = %.5f " % (total_tat / n))
-    return roundrobinOutput
+    avgwait = round(total_wt / n, 5)
+    avgturn = round(total_tat / n, 5)
+    return roundrobinOutput, str(avgwait), str(avgturn)
 
 
 if __name__ == "__main__":
