@@ -17,8 +17,6 @@ def findAverageTime(processes, n, bt):
     total_tat = 0
     findWaitingTimeForAllProcesses(processes, n, bt, wait)
     findTurnAroundTimeForAllProcesses(processes, n, bt, wait, tat)
-    # print("------------FCFS-----------------")
-    # print("Processes Burst time " + " Waiting time " + " Turn around time")
 
     for i in range(n):
         burstData = str(bt[i])
@@ -26,21 +24,10 @@ def findAverageTime(processes, n, bt):
         tatData = str(tat[i])
         totalWaitingTime = totalWaitingTime + wait[i]
         total_tat = total_tat + tat[i]
-        # print(" " + str(i + 1) + "\t\t" +
-        #       str(bt[i]) + "\t " + str(wait[i]) + "\t\t " + str(tat[i]))
+
         fcfsOutput.append(
             {"process": str(i+1), "burstTime": burstData, "waitingTime": waitData, "turnAroundTime": tatData})
-    # print("Average waiting time = "+str(totalWaitingTime / n))
-    # print("Average turn around time = "+str(total_tat / n))
+
     avgwait = round(totalWaitingTime / n, 5)
     avgturn = round(total_tat / n, 5)
     return fcfsOutput, str(avgwait), str(avgturn)
-
-
-if __name__ == "__main__":
-    # process id's
-    processes = [1, 2, 3]
-    n = len(processes)
-    # Burst time of all processes
-    burst_time = [1, 2, 3]
-    findAverageTime(processes, n, burst_time)

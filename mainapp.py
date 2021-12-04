@@ -27,24 +27,19 @@ class appwindow(QMainWindow, app.Ui_MainWindow):
     def calculate(self):
         try:
             bursttimetext = self.burstfield.text()
-            bursttime = [int(burst.strip()) for burst in bursttimetext.split(',')]
+            bursttime = [int(burst.strip())
+                         for burst in bursttimetext.split(',')]
             numprocess = len(bursttime)
             processes = [num for num in range(1, numprocess + 1)]
 
             self.fcfsOutput, self.fcfswaitval, self.fcfsturnval = fcfs.findAverageTime(
                 processes, numprocess, bursttime)
-            # print("!!!!!!!!!!!!FCSFS OUTPUT!!!!!!!!!!!!")
-            # print(self.fcfsOutput)
 
             self.roundrobinOutput, self.rrwaitval, self.rrturnval = roundrobin.findAverageTime(
                 processes, numprocess, bursttime, 2)
-            # print("!!!!!!!!!!!!RR OUTPUT!!!!!!!!!!!!")
-            # print(self.roundrobinOutput)
 
             self.sjfOutput, self.sjfwaitval, self.sjfturnval = sjf.findAverageTime(
                 sorted(bursttime), bursttime)
-            # print("!!!!!!!!!!!!SJF OUTPUT!!!!!!!!!!!!")
-            # print(self.sjfOutput)
 
             self.createtable()
             self.createlabels()
@@ -95,14 +90,16 @@ class appwindow(QMainWindow, app.Ui_MainWindow):
         self.sjfwait.setText(self.sjfwaitval + 's')
         self.sjfturn.setText(self.sjfturnval + 's')
 
-QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
-QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
-QApplication.setHighDpiScaleFactorRoundingPolicy(
-    Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
 
-app = QApplication([])
+if __name__ == '__main__':
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
+    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
+    QApplication.setHighDpiScaleFactorRoundingPolicy(
+        Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
 
-mainwindow = appwindow()
-mainwindow.show()
+    app = QApplication([])
 
-app.exec_()
+    mainwindow = appwindow()
+    mainwindow.show()
+
+    app.exec_()
