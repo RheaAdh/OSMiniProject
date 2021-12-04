@@ -22,6 +22,8 @@ class appwindow(QMainWindow, app.Ui_MainWindow):
         self.numfield.setTextMargins(5, 0, 0, 0)
         self.burstfield.setTextMargins(5, 0, 0, 0)
 
+        self.setWindowTitle('OS Mini Project')
+
     def calculate(self):
         try:
             bursttimetext = self.burstfield.text()
